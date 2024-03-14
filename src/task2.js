@@ -73,7 +73,7 @@ UserService.prototype.createShortUserInfo = async function () {
 
         console.log(updateUsers)
 
-        // Я не дуже зрозуміла як в цьому завданні правильно використати spread і rest оператори 
+        // Я не дуже зрозуміла для чого і як правильно в цьому завданні використати spread і rest оператори 
 
         // const [ {id, name, phone}, ...otherUsers ] = users;
 

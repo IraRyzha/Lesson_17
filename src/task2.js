@@ -90,7 +90,7 @@ const usersProto = {
 
 }
 
-const users = Object.create(usersProto);
+const usersService = Object.create(usersProto);
 console.log(users)
 // users.createCityObject();
 // users.sortUsersAlphabetically();

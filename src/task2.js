@@ -15,7 +15,7 @@ const usersProto = {
         try {
             const users = await this.getUsers();
     
-            users.reduce((cityObject, user) => {
+            const cityObject = users.reduce((cityObject, user) => {
                 const cityName = user.address.city;
                 const { id, name, email, phone, company : { name: companyName }} = user;
                 const userInfo = {
@@ -32,11 +32,9 @@ const usersProto = {
                 } else {
                     cityObject[cityName].push(userInfo);
                 }
-            
-                console.log(cityObject);
                 return cityObject;
             }, {});
-    
+            console.log(cityObject);
         } catch(error) {
             console.log(error);
             return {};
@@ -46,7 +44,6 @@ const usersProto = {
     sortUsersAlphabetically: async function () {
         try {
             const users = await this.getUsers();
-            console.log(users)
 
             const alphabeticalUsers = [...users].sort((nextUser, previousUser) => {
                 return nextUser.name[0].localeCompare(previousUser.name[0]);
@@ -70,30 +67,23 @@ const usersProto = {
             });
     
             console.log(updateUsers)
-            
-            // Я не дуже зрозуміла для чого і як правильно в цьому завданні використати spread і rest оператори 
-    
-            // const [ {id, name, phone}, ...otherUsers ] = users;
-    
-            // const changeOtherUsers = otherUsers.map(otherUser => {
-            //     const {id, name, phone} = otherUser;
-            //     return {id, name, phone};
-            // })
-    
-            // const shortenArray = [ {id, name, phone}, ...changeOtherUsers ];
-            // console.log(shortenArray)
         } catch(error) {
             console.log(error);
             return [];
         }
     }
-
+ 
 }
 
-const usersService = Object.create(usersProto);
-console.log(users)
-// users.createCityObject();
-// users.sortUsersAlphabetically();
-// users.createShortUserInfo();
+async function App() {
+    const users = await usersProto.getUsers();
+    console.log(users);
+    usersProto.createCityObject()
+    usersProto.sortUsersAlphabetically()
+    usersProto.createShortUserInfo()
+}
+
+App()
+
 
 
